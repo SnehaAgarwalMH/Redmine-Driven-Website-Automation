@@ -1,0 +1,36 @@
+name: Redmine Automation
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Schedule it to run daily at midnight
+
+jobs:
+  automation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set Up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11' # Change to your preferred Java version
+
+      - name: Build and Run Automation
+        run: |
+          # Your commands to build and run the automation script go here
+          # Example:
+          # java -jar your-automation-script.jar
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: screenshots
+          path: path/to/screenshots
+
+      - name: Upload Screen Recordings
+        uses: actions/upload-artifact@v2
+        with:
+          name: screen-recordings
+          path: path/to/screen-recordings
